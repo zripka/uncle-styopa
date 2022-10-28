@@ -17,7 +17,6 @@ The program should identify which words are important to learn first and priorit
 
 ### analysis
 1. Read text file
-2. Identify: total word count, total unique word count
 2. Identify: total word count, total unique word count, character frequency, letter frequency
 3. Identify counts by individual word (display histogram)
 5. Based on frequency, identify a priority cutoff: if a repeated word makes up more than 0.X% of the text, include it in the priority list (ranked word frequency, most to least)
