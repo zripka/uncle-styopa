@@ -31,9 +31,11 @@ Anki can bulk import "notes" (flashcards) from a .csv. My end result is a folder
 4. Do the same for each day in the next month, but add 2 words to each file
 5. In the third month, continue, but add 3 words to each file and continue in the Fibonacci sequence (5 words per day the next month, 8, 13, etc.)
 
-<<<<<<< HEAD
+## loosies
+- translating itself is a very manual process and a time suck; connect to an API to do this programatically?
+- what about и, там, and как and other simple words I obviously already have in there? Is there a way to connect to Anki to pre-emptively check if a given word is a duplicate and therefore omit it from the list?
+
 ## results
-This doesn't belong in the readme but here we are.
 
 | Frequency value (FV) | Number of unique words at this FV | Rolling sum of unique words | Cumulative percentage of unique words | Cumulative percentage of the story |
 |----------------------|-----------------------------------|-----------------------------|---------------------------------------|------------------------------------|
@@ -66,8 +68,5 @@ This doesn't belong in the readme but here we are.
 | 3                    | 88                                | 199                         | 11.34%                                | 49.44%                             |
 | 2                    | 248                               | 447                         | 25.47%                                | 63.34%                             |
 | 1                    | 1308                              | 1755                        | 100.00%                               | 100.00%                            |
-=======
-## loosies
-- translating itself is a very manual process and a time suck; connect to an API to do this programatically?
-- what about и, там, and как and other simple words I obviously already have in there? Is there a way to connect to Anki to pre-emptively check if a given word is a duplicate and therefore omit it from the list?
->>>>>>> c4f3618675a2cc9da88c5beced7977821f5d6a00
+
+
