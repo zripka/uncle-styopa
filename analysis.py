@@ -1,5 +1,7 @@
 import pandas as pd 
 import matplotlib.pyplot as plt
+import json
+import urllib.request
 
 pd.set_option('display.max_columns', None)
 
@@ -76,3 +78,41 @@ print(f"Here are the {text_series_counts.count()} words that appear in the story
 print(text_series_counts.to_markdown())
 
 print_newlines()
+
+def request(action, **params):
+    return {'action': action, 'params': params, 'version': 6}
+
+def invoke(action, **params):
+    requestJson = json.dumps(request(action, **params)).encode('utf-8')
+    response = json.load(urllib.request.urlopen(urllib.request.Request('http://localhost:8765', requestJson)))
+    if len(response) != 2:
+        raise Exception('response has an unexpected number of fields')
+    if 'error' not in response:
+        raise Exception('response is missing required error field')
+    if 'result' not in response:
+        raise Exception('response is missing required result field')
+    if response['error'] is not None:
+        raise Exception(response['error'])
+    return response['result']
+
+text = "This {{c1::is}} another {{c2::test}}."
+back_extra = ":+)"
+
+invoke('addNote', note = {
+            "deckName": "Default",
+            "modelName": "Cloze",
+            "fields": {
+                "Text": text,
+                "Back Extra": back_extra
+            },
+            "options": {
+                "allowDuplicate": False,
+                "duplicateScope": "deck",
+                "duplicateScopeOptions": {
+                    "deckName": "Default",
+                    "checkChildren": False,
+                    "checkAllModels": False
+                }
+            }
+        }
+    )
