@@ -98,7 +98,7 @@ def invoke(action, **params):
 text = "This {{c1::is}} another {{c2::test}}."
 back_extra = ":+)"
 
-invoke('addNote', note = {
+'''invoke('addNote', note = {
             "deckName": "Default",
             "modelName": "Cloze",
             "fields": {
@@ -115,4 +115,11 @@ invoke('addNote', note = {
                 }
             }
         }
-    )
+    )'''
+
+story_words_prioritized = list(text_series_counts.index.values)
+
+unique_words_in_story_order = pd.Series(text_series.unique())
+for word in unique_words_in_story_order:
+	if word not in story_words_prioritized:
+		story_words_prioritized.append(word)
