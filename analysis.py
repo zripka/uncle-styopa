@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import json
 import urllib.request
+import datetime
+import copy
 
 pd.set_option('display.max_columns', None)
 
@@ -123,3 +125,25 @@ unique_words_in_story_order = pd.Series(text_series.unique())
 for word in unique_words_in_story_order:
 	if word not in story_words_prioritized:
 		story_words_prioritized.append(word)
+
+test_list = ['это', 'вот', 'кто', 'ребята', 'егор', 'вам']
+
+print("Unique words by frequency then story order: ")
+print(test_list)
+print(f"Length: {len(test_list)}")
+print(datetime.datetime.now())
+
+test_list_copy = copy.deepcopy(test_list)
+
+for word in test_list_copy:
+	search_string = f"w:{word}"
+	result = invoke('findNotes', query=search_string)
+	print(test_list_copy)
+	print(test_list)
+	if len(result) > 0:
+		test_list.remove(word)
+
+print("Same list after checking whether each word is already in Anki: ")
+print(test_list)
+print(f"Length: {len(test_list)}")
+print(datetime.datetime.now())
