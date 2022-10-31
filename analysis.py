@@ -68,5 +68,11 @@ frequency_word_count_df['Number of words at this FV incl. duplicates'] = frequen
 frequency_word_count_df['Rolling sum'] = frequency_word_count_df['Number of words at this FV incl. duplicates'].cumsum()
 frequency_word_count_df['Cumulative percentage of unique words'] = frequency_word_count_df.apply(lambda x : x['Rolling sum of unique words'] / 1755 * 100, axis=1)
 frequency_word_count_df['Cumulative percentage of the story'] = frequency_word_count_df.apply(lambda x : x['Rolling sum'] / word_count * 100, axis=1)
-print(frequency_word_count_df.filter(items=['Frequency value (FV)', 'Number of unique words at this FV', 'Rolling sum of unique words','Cumulative percentage of unique words','Cumulative percentage of the story']).to_csv())
+#print(frequency_word_count_df.filter(items=['Frequency value (FV)', 'Number of unique words at this FV', 'Rolling sum of unique words','Cumulative percentage of unique words','Cumulative percentage of the story']).to_csv())
+text_series_counts = text_series.value_counts()
+mask = text_series_counts > 2
+text_series_counts = text_series_counts[mask]
+print(f"Here are the {text_series_counts.count()} words that appear in the story three or more times, in descending order of frequency.")
+print(text_series_counts.to_markdown())
+
 print_newlines()
